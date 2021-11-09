@@ -1,0 +1,144 @@
+ak@ak:~$ hdfs dfs
+Usage: hadoop fs [generic options]
+	[-appendToFile <localsrc> ... <dst>]
+	[-cat [-ignoreCrc] <src> ...]
+	[-checksum <src> ...]
+	[-chgrp [-R] GROUP PATH...]
+	[-chmod [-R] <MODE[,MODE]... | OCTALMODE> PATH...]
+	[-chown [-R] [OWNER][:[GROUP]] PATH...]
+	[-copyFromLocal [-f] [-p] [-l] [-d] <localsrc> ... <dst>]
+	[-copyToLocal [-f] [-p] [-ignoreCrc] [-crc] <src> ... <localdst>]
+	[-count [-q] [-h] [-v] [-t [<storage type>]] [-u] [-x] <path> ...]
+	[-cp [-f] [-p | -p[topax]] [-d] <src> ... <dst>]
+	[-createSnapshot <snapshotDir> [<snapshotName>]]
+	[-deleteSnapshot <snapshotDir> <snapshotName>]
+	[-df [-h] [<path> ...]]
+	[-du [-s] [-h] [-x] <path> ...]
+	[-expunge]
+	[-find <path> ... <expression> ...]
+	[-get [-f] [-p] [-ignoreCrc] [-crc] <src> ... <localdst>]
+	[-getfacl [-R] <path>]
+	[-getfattr [-R] {-n name | -d} [-e en] <path>]
+	[-getmerge [-nl] [-skip-empty-file] <src> <localdst>]
+	[-help [cmd ...]]
+	[-ls [-C] [-d] [-h] [-q] [-R] [-t] [-S] [-r] [-u] [<path> ...]]
+	[-mkdir [-p] <path> ...]
+	[-moveFromLocal <localsrc> ... <dst>]
+	[-moveToLocal <src> <localdst>]
+	[-mv <src> ... <dst>]
+	[-put [-f] [-p] [-l] [-d] <localsrc> ... <dst>]
+	[-renameSnapshot <snapshotDir> <oldName> <newName>]
+	[-rm [-f] [-r|-R] [-skipTrash] [-safely] <src> ...]
+	[-rmdir [--ignore-fail-on-non-empty] <dir> ...]
+	[-setfacl [-R] [{-b|-k} {-m|-x <acl_spec>} <path>]|[--set <acl_spec> <path>]]
+	[-setfattr {-n name [-v value] | -x name} <path>]
+	[-setrep [-R] [-w] <rep> <path> ...]
+	[-stat [format] <path> ...]
+	[-tail [-f] <file>]
+	[-test -[defsz] <path>]
+	[-text [-ignoreCrc] <src> ...]
+	[-touchz <path> ...]
+	[-truncate [-w] <length> <path> ...]
+	[-usage [cmd ...]]
+
+Generic options supported are:
+-conf <configuration file>        specify an application configuration file
+-D <property=value>               define a value for a given property
+-fs <file:///|hdfs://namenode:port> specify default filesystem URL to use, overrides 'fs.defaultFS' property from configurations.
+-jt <local|resourcemanager:port>  specify a ResourceManager
+-files <file1,...>                specify a comma-separated list of files to be copied to the map reduce cluster
+-libjars <jar1,...>               specify a comma-separated list of jar files to be included in the classpath
+-archives <archive1,...>          specify a comma-separated list of archives to be unarchived on the compute machines
+
+The general command line syntax is:
+command [genericOptions] [commandOptions]
+
+ak@ak:~$ pwd
+/home/ak
+ak@ak:~$ hdfs dfs -rm /Poo/hdfs-site.xml
+Deleted /Poo/hdfs-site.xml
+ak@ak:~$ hdfs dfs -rm /Poo/superstore.csv
+Deleted /Poo/superstore.csv
+ak@ak:~$ hdfs dfs -put getstore.txt /ak/store.csv
+put: `/ak/store.csv': No such file or directory: `hdfs://localhost:9000/ak/store.csv'
+ak@ak:~$ hdfs dfs -put /home/ak/datasets/patient.txt /Poo
+ak@ak:~$ hdfs dfs -appendToFile /home/ak/datasets/patient.txt /Poo
+appendToFile: Cannot append to directory /Poo; already exists as a directory.
+ak@ak:~$ hdfs dfs -appendToFile /home/ak/datasets/patient.txt /Poo/patient.txt
+ak@ak:~$ hdfs dfs -rmdir -R /a
+-rmdir: Illegal option -R
+Usage: hadoop fs [generic options]
+	[-appendToFile <localsrc> ... <dst>]
+	[-cat [-ignoreCrc] <src> ...]
+	[-checksum <src> ...]
+	[-chgrp [-R] GROUP PATH...]
+	[-chmod [-R] <MODE[,MODE]... | OCTALMODE> PATH...]
+	[-chown [-R] [OWNER][:[GROUP]] PATH...]
+	[-copyFromLocal [-f] [-p] [-l] [-d] <localsrc> ... <dst>]
+	[-copyToLocal [-f] [-p] [-ignoreCrc] [-crc] <src> ... <localdst>]
+	[-count [-q] [-h] [-v] [-t [<storage type>]] [-u] [-x] <path> ...]
+	[-cp [-f] [-p | -p[topax]] [-d] <src> ... <dst>]
+	[-createSnapshot <snapshotDir> [<snapshotName>]]
+	[-deleteSnapshot <snapshotDir> <snapshotName>]
+	[-df [-h] [<path> ...]]
+	[-du [-s] [-h] [-x] <path> ...]
+	[-expunge]
+	[-find <path> ... <expression> ...]
+	[-get [-f] [-p] [-ignoreCrc] [-crc] <src> ... <localdst>]
+	[-getfacl [-R] <path>]
+	[-getfattr [-R] {-n name | -d} [-e en] <path>]
+	[-getmerge [-nl] [-skip-empty-file] <src> <localdst>]
+	[-help [cmd ...]]
+	[-ls [-C] [-d] [-h] [-q] [-R] [-t] [-S] [-r] [-u] [<path> ...]]
+	[-mkdir [-p] <path> ...]
+	[-moveFromLocal <localsrc> ... <dst>]
+	[-moveToLocal <src> <localdst>]
+	[-mv <src> ... <dst>]
+	[-put [-f] [-p] [-l] [-d] <localsrc> ... <dst>]
+	[-renameSnapshot <snapshotDir> <oldName> <newName>]
+	[-rm [-f] [-r|-R] [-skipTrash] [-safely] <src> ...]
+	[-rmdir [--ignore-fail-on-non-empty] <dir> ...]
+	[-setfacl [-R] [{-b|-k} {-m|-x <acl_spec>} <path>]|[--set <acl_spec> <path>]]
+	[-setfattr {-n name [-v value] | -x name} <path>]
+	[-setrep [-R] [-w] <rep> <path> ...]
+	[-stat [format] <path> ...]
+	[-tail [-f] <file>]
+	[-test -[defsz] <path>]
+	[-text [-ignoreCrc] <src> ...]
+	[-touchz <path> ...]
+	[-truncate [-w] <length> <path> ...]
+	[-usage [cmd ...]]
+
+Generic options supported are:
+-conf <configuration file>        specify an application configuration file
+-D <property=value>               define a value for a given property
+-fs <file:///|hdfs://namenode:port> specify default filesystem URL to use, overrides 'fs.defaultFS' property from configurations.
+-jt <local|resourcemanager:port>  specify a ResourceManager
+-files <file1,...>                specify a comma-separated list of files to be copied to the map reduce cluster
+-libjars <jar1,...>               specify a comma-separated list of jar files to be included in the classpath
+-archives <archive1,...>          specify a comma-separated list of archives to be unarchived on the compute machines
+
+The general command line syntax is:
+command [genericOptions] [commandOptions]
+
+Usage: hadoop fs [generic options] -rmdir [--ignore-fail-on-non-empty] <dir> ...
+ak@ak:~$ hdfs dfs -rm -R /a
+Deleted /a
+
+/////////////Multiple Directories//////////////////////
+
+
+ak@ak:~$ hdfs dfs -mkdir -p /Poo/2021/11/08
+ak@ak:~$ hdfs dfs -put /home/ak/datasets/people.txt /Poo
+ak@ak:~$ hdfs dfs -cat people.txt
+cat: `people.txt': No such file or directory
+ak@ak:~$ hdfs dfs -cat /Poo/people.txt
+Michael, 29
+Andy, 30
+Justin, 19
+ak@ak:~$ hdfs dfs -put /home/ak/datasets/people.txt /Poo
+ak@ak:~$ hdfs dfs -put /home/ak/datasets/people.txt /Poo
+ak@ak:~$ hdfs dfs -put /home/ak/datasets/drug.txt /Poo
+ak@ak:~$ 
+
+
